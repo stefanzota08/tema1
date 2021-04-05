@@ -2,8 +2,19 @@
 
 ## 1. DNS over HTTPS
 Am implementat funcția aici:
-```python
-print("你好")
+```
+import requests, json
+
+headers = { 
+     "Accept": "application/dns-json"
+ }
+
+def getter (_nume): 
+     response = requests.get('https://cloudflare-dns.com/dns-query?name=' + _nume + '.com&type=AAAA', headers=headers)
+     print (json.loads(response.text)["Answer"][0]['data'])
+
+_nume = input("insert name : ") 
+getter(_nume)
 ```
 iar aici e un exemplu de execuție
 ```python
